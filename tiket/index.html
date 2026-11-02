@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tiket — билеты</title>
+  <title>Tiket — варианты тарифов</title>
   <meta name="theme-color" content="#080607" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F56624'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/tokens.css?v=9" />
@@ -19,8 +19,76 @@
        3) возвращены значения по умолчанию демо-страницы Uiverse: чёрный текст,
           line-height normal, нулевой радиус (сайт задаёт белый текст и радиус 4px);
        4) один общий SVG-фильтр на два билета (в оригинале фильтр лежал в карточке);
-       5) шрифты демо берутся из локальной папки fonts.
+       5) Inter подключён локально, Impact заменён на свободный Anton (OFL).
        ========================================================================== */
+
+    @font-face {
+      font-family: "Inter";
+      src: url("fonts/Inter-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("fonts/Inter-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Anton";
+      src: url("fonts/anton-latin.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Oswald";
+      src: url("fonts/oswald-cyrillic-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    @font-face {
+      font-family: "Oswald";
+      src: url("fonts/oswald-latin-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Literata";
+      src: url("fonts/Literata-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Literata";
+      src: url("fonts/Literata-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("fonts/jetbrains-mono-cyrillic.woff2") format("woff2");
+      font-weight: 300 800;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("fonts/jetbrains-mono-latin.woff2") format("woff2");
+      font-weight: 300 800;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
     .ticket-demo {
       position: relative;
@@ -762,16 +830,55 @@
 <main>
 
   <div class="wrap" style="padding-top:36px;padding-bottom:0">
-    <p class="small muted">TIKET · демонстрация билетов</p>
+    <p class="small muted">TIKET · три варианта тарифов: блок стоимости, билеты и постеры</p>
   </div>
+
+  <!-- 9. СТОИМОСТЬ — текущий блок без изменений -->
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Вариант 1</span>
+        <h2>Стоимость участия</h2>
+        <p class="lead">Выберите подходящую номинацию и период подачи. Стоимость участия повышается по мере приближения окончания приёма заявок.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card price-card">
+          <h3>Люди в маркетинге</h3>
+          <div class="price">9 900 ₽</div>
+          <div class="price-note">с 19 ноября — 11 990 ₽</div>
+          <p class="muted">Для фрилансеров и специалистов в найме, которые самостоятельно ведут направление.</p>
+          <div class="price-card__action"><a class="btn" href="#pricing">Подать заявку</a></div>
+        </article>
+
+        <article class="card price-card">
+          <h3>Участие команд</h3>
+          <div class="price">24 900 ₽</div>
+          <div class="price-note">с 19 ноября — 27 990 ₽</div>
+          <p class="muted">Для инхаус-команд, агентств и групп специалистов.</p>
+          <div class="price-card__action"><a class="btn" href="#pricing">Подать заявку</a></div>
+        </article>
+      </div>
+
+      <div class="cta-strip">
+        <div class="cta-strip__text">
+          <h3>Планируете несколько заявок?</h3>
+          <p class="muted">Для нескольких подач предусмотрены специальные условия. Менеджер поможет разобраться в вариантах и рассчитает стоимость.</p>
+        </div>
+        <a class="btn btn--ghost" href="#pricing">Рассчитать стоимость</a>
+      </div>
+
+      <p class="lead" style="margin-top:24px;max-width:760px">Оплата предполагает участие в конкурсе. Прохождение в шорт-лист и победу определяет экспертная оценка.</p>
+    </div>
+  </section>
 
   <!-- ТЕСТ: те же тарифы в виде билетов -->
   <section class="section" id="tickets">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Демо</span>
-        <h2>Билеты</h2>
-        <p class="lead">Голографический фон, перфорация, ноты, штрихкод и анимация парения. Размер билета — 180 × 320 px.</p>
+        <span class="eyebrow">Вариант 2</span>
+        <h2>Тарифы-билеты</h2>
+        <p class="lead">Тот же состав тарифов в билетах Uiverse: размер 180 × 320 px, голографический фон, перфорация, ноты, штрихкод и анимация парения — без изменений.</p>
       </div>
 
       <div class="ticket-demo">
@@ -838,7 +945,84 @@
         </div>
       </div>
 
-      <p class="small muted test-note">Оригинал: Uiverse, автор dexter-st, «slippery-bird-76». Шрифты — Golos Text, Dela Gothic One и Involve (OFL).</p>
+      <p class="small muted test-note">Оригинал: Uiverse, автор dexter-st, «slippery-bird-76». Шрифты — свободные (OFL), подключены локально.</p>
+    </div>
+  </section>
+
+  <!-- ТЕСТ: те же тарифы в виде постеров -->
+  <section class="section" id="manifesto">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Вариант 3</span>
+        <h2>Тарифы-постеры</h2>
+        <p class="lead">Два тарифа в стиле Uiverse «curvy-snake-6»: крупная типографика, лента, штрихкод и минималистичная палитра — без переключателя стилей.</p>
+      </div>
+
+      <div class="manifesto-demo">
+        <div class="manifesto-showcase">
+<div class="presentation-stage">
+<div class="poster-row">
+              <div class="poster-card">
+                <div class="css-mesh-grain"></div>
+                <div class="drafting-grid"></div>
+
+                <div class="geo-orb"></div>
+
+                <div class="type-container">
+                  <div class="huge-text word-1">ЛЮДИ</div>
+                  <div class="huge-text word-2">SMM</div>
+                </div>
+
+                <div class="tape-ribbon">
+                  <div class="tape-scroll">
+                    <span>9 900 ₽ // ЛЮДИ В МАРКЕТИНГЕ. ДЛЯ ФРИЛАНСЕРОВ И СПЕЦИАЛИСТОВ В НАЙМЕ. // ОСТАВИТЬ ЗАЯВКУ //</span>
+                    <span>9 900 ₽ // ЛЮДИ В МАРКЕТИНГЕ. ДЛЯ ФРИЛАНСЕРОВ И СПЕЦИАЛИСТОВ В НАЙМЕ. // ОСТАВИТЬ ЗАЯВКУ //</span>
+                  </div>
+                </div>
+
+                <div class="poster-footer">
+                  <div class="barcode"></div>
+                  <div class="manifesto-text">
+                    <p class="poster-price">9&nbsp;900&nbsp;₽</p>
+                    <p class="desc">Люди в маркетинге. Для фрилансеров и специалистов в найме.<span class="desc-date nowrap">С 19 ноября — 11&nbsp;990&nbsp;₽.</span></p>
+                    <a class="poster-cta" href="#manifesto" aria-label="Оставить заявку — Люди в маркетинге, 9 900 ₽">Оставить заявку</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="poster-card">
+                <div class="css-mesh-grain"></div>
+                <div class="drafting-grid"></div>
+
+                <div class="geo-orb"></div>
+
+                <div class="type-container">
+                  <div class="huge-text word-1">УЧАСТИЕ</div>
+                  <div class="huge-text word-2">КОМАНД</div>
+                </div>
+
+                <div class="tape-ribbon">
+                  <div class="tape-scroll">
+                    <span>24 900 ₽ // ДЛЯ ИНХАУС-КОМАНД, АГЕНТСТВ И ГРУПП СПЕЦИАЛИСТОВ. // ОСТАВИТЬ ЗАЯВКУ //</span>
+                    <span>24 900 ₽ // ДЛЯ ИНХАУС-КОМАНД, АГЕНТСТВ И ГРУПП СПЕЦИАЛИСТОВ. // ОСТАВИТЬ ЗАЯВКУ //</span>
+                  </div>
+                </div>
+
+                <div class="poster-footer">
+                  <div class="barcode"></div>
+                  <div class="manifesto-text">
+                    <p class="poster-price">24&nbsp;900&nbsp;₽</p>
+                    <p class="desc">Для <span class="nowrap">инхаус-команд</span>, агентств и групп специалистов.<span class="desc-date nowrap">С 19 ноября — 27&nbsp;990&nbsp;₽.</span></p>
+                    <a class="poster-cta" href="#manifesto" aria-label="Оставить заявку — Участие команд, 24 900 ₽">Оставить заявку</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="small muted" style="max-width:760px;margin-top:24px">Оригинал: Uiverse, mamyapro123, «curvy-snake-6». Impact → Oswald, Georgia → Literata, Courier New → JetBrains Mono (все — OFL). Показан минималистичный вариант без переключателя.</p>
     </div>
   </section>
 
